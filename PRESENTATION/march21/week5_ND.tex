@@ -1,0 +1,430 @@
+\documentclass[12pt]{article}
+%\documentclass[12pt,a4paper]{article}
+%Size -- the best choice for university course
+%slides seems landscape A5, 12pt letters.  Margins
+%are made narrow, as much text on each page as possible.
+
+%Could define size explicitly, but finally A5 was selected:
+
+\usepackage[%paperwidth=600pt,paperheight=450pt,
+a5paper,left=15pt,right=15pt,top=3pt,bottom=3pt,%
+  %outer=25mm,
+  %inner=35mm,
+  %vmargin=2mm,
+  includehead,includefoot,headheight=15.4pt,headsep=5pt,%
+  footskip=22pt,landscape]{ geometry }
+
+
+\usepackage{tocloft}
+%\usepackage{tocloft}% http://ctan.org/pkg/tocloft
+\setlength{\cftsecnumwidth}{1.9em}
+\setlength{\cftsubsecnumwidth}{2.95em}
+\setlength{\cftsubsubsecnumwidth}{3.7em}
+% Set length of number width in ToC
+% so that the number has enough space and
+% does not run into the subsection title.
+
+\usepackage[unicode,colorlinks=true,breaklinks]{hyperref}
+%\usepackage[dvips]{hyperref}
+%should display links, but it does not work with \H accent
+%and formulas in section titles
+
+\hypersetup{colorlinks,%
+  linkcolor=blue,urlcolor=magenta,citecolor=green}
+%Breaks long url`s in text, while keeping it one link:
+\usepackage{breakurl}
+
+\newcommand{\nc}{\newcommand} % a newcommand rövidítése
+\newcommand{\rc}{\renewcommand} % a renewcommand rövidítése
+
+
+%Creates header and footer w time, section titles, etc. 
+%Here the stripes are made narrow. 
+\usepackage{fancyhdr}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+
+\pagestyle{fancy}
+\rc{\headrulewidth}{0.3pt}
+\rc{\footrulewidth}{0.3pt}
+\lfoot{\today\, \currenttime}
+\cfoot{}
+\rfoot{\thepage}
+
+\sloppy %To prefer larger spaces between 
+
+%words rather than overflow a line. 
+\frenchspacing %No wide space after period, this is the
+%French and also the Hungarian rule. 
+
+\usepackage{bookmark}
+\usepackage[medium,compact,toctitles]{titlesec}
+\usepackage[active]{srcltx}
+%\usepackage{savetrees} 
+% others: 
+
+\usepackage{t1enc}
+\usepackage{amsmath, amssymb, amsfonts, amsbsy, amsthm}
+\usepackage{mathtools}
+\usepackage{soul} % For \st command
+\let\equation\gather
+\let\endequation\endgather
+
+%\usepackage[magyar]{babel}
+\usepackage[utf8]{inputenc} 
+%\usepackage[pdftex]{graphicx}
+
+\usepackage{graphicx}
+%\graphicspath{{./}{kepek/}{./files/}}
+
+\usepackage{epstopdf}
+\epstopdfsetup{update}
+% only regenerate pdf files when eps file is newer
+
+
+
+\usepackage[width=.75\textwidth]{caption}
+\usepackage{lmodern}%Avoid rastering for letters.  
+ 
+% Alább definiáljuk a magyar névelőhöz illeszkedő egyenlet hivatkozást.
+% A magyar csomag része \az{..} az argumentumbeli számnévhez 
+% illeszkedő névelő, \Az ugyanez % nagybetűvel, ezeket használjuk 
+% alább.  
+\nc{\Aeqref}[1]{\Az{\eqref{#1}}}
+\nc{\aeqref}[1]{\az{\eqref{#1}}}
+
+\usepackage{bbold}
+\usepackage{ulem}
+\usepackage[caption=false]{subfig} 
+%\usepackage{epsfig}
+%\usepackage[dvips]{color}
+\usepackage{accents}
+\usepackage{bbold}
+\usepackage{textcomp}
+\usepackage{nicefrac}%\nicefrac{}{} makes frac with slash for text
+\usepackage[section]{placeins} %have \FloatBarrier,
+%issued automatically at section titles 
+
+\usepackage{wrapfig} %for wrapping text around floats 
+\usepackage{indentfirst}
+%for indenting the first para after section title, customary in 
+%Hungarian but not so in English.  
+\usepackage[integrals]{wasysym} %symbols for planets 
+\usepackage{upgreek}
+\usepackage{bm}\usepackage{bbm}
+%I experimented with those:
+%\usepackage[utopia]{mathdesign}
+%\usepackage[OMLmathrm,OMLmathbf]{isomath}
+%\usepackage{movie15}
+%\usepackage[thinlines]{easytable} % DOES NOT WORK!
+%comfortable table creation
+%\begin{TAB}(r,1cm,2cm)[5pt]{|l|}{|c|c|}
+%(rows,min,max)[tabcolsep]{columns}{rows}
+%\end{TAB}
+
+
+\rc*\familydefault{\sfdefault}
+%entire doc in sanserif for better reading from projection
+
+%redefine paragraph to enumerate them
+\setcounter{secnumdepth}{6}
+\rc\theparagraph{{\it\bf\alph{paragraph}}}
+\rc\thesubparagraph{{\it\bf\roman{subparagraph}}}
+
+\makeatletter
+\rc\paragraph{\@startsection{paragraph}{4}{\z@}
+{-3.25ex\@plus -1ex \@minus -.2ex}%
+{5pt \@plus .2ex}%
+{\normalfont\normalsize\bfseries\itshape}}
+\rc\subparagraph{\@startsecton{paragraph}{5}{\z@}%
+{-3.25ex\@plus -1ex \@minus -.2ex}%
+{5pt \@plus .2ex}%
+{\normalfont\normalsize\itshape}}
+
+% \rc*\itemize{%
+%   \ifnum \@itemdepth >\thr@@\@toodeep\else
+%     \advance\@itemdepth\@ne
+%     \edef\@itemitem{labelitem\romannumeral\the\@itemdepth}%
+%     \expandafter
+%     \list
+%       \csname\@itemitem\endcsname
+%       {\def\makelabel##1{\hss\llap{##1}}%
+%        \setlength{\itemsep}{2pt}%
+%        \setlength{\parsep}{2pt}%
+%        \setlength{\parindent}{7pt}}%
+%   \fi}
+
+\makeatother
+
+%\rc{\labelitemi}{$\to$}
+%\rc{\labelitemii}{$\star$}
+
+
+
+%Az "innen következik" jel formulában 
+% \nc{\ra}{ \ \ \leadsto \ \ } %Ezen kicsi a nyíl.
+
+% \nc{\el}{\mathcal{E}}
+
+
+
+
+
+%számozott műfajok 
+%\newtheorem{hf}{\text{\it Házi feladat}}[section]
+%\nc{\HF}[1]{{\hf \tc{MB}{#1}}}
+% \newtheoremstyle{mystyle}
+% {headspec} \thmnumber{ #1} \thmname{#2} \thmnote{#3}
+% \newtheorem{gf}{\text{\it{\cya{Gyakorló feladat}}}}[section]
+% \nc{\GF}[1]{{\gf #1}}
+% \nc{\GFL}[2]{{\begin{gf}\label{gf:#2} #1\end{gf}}}
+% \nc{\GFN}[1]{{\vspace{-0.5\baselineskip}\gf #1}}
+% \newtheorem{pl}{\text{\it{{Példa}}}}[subsection]
+
+% \usepackage{xpatch}
+% \makeatletter
+% \xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
+% \makeatother
+
+% \nc{\PL}[1]{{\pl \gre{#1}}}
+% \nc{\PLL}[2]{{\begin{pl}\label{pl:#2} \gre{#1}\end{pl}}}
+% \nc{\dl}[2]{\hfill\yel{$2016.#1  \ \blacktriangleleft \ %
+% \mid \ \blacktriangleright \ 2016.#2$}}%az előadások dátumai
+% \nc{\dln}[2]{\hfill\yel{$2017.#1  \ \blacktriangleleft \ %
+% \mid \ \blacktriangleright \ 2017.#2$}}%az előadások dátumai
+
+
+
+%praktikus: vb soremelés, vbn állítható, nn egyenlet végére
+\nc{\vb}{\vspace{\baselineskip}}
+\nc{\vbn}[1]{\vspace{#1\baselineskip}}
+\nc{\nn}{\nonumber}
+
+%\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
+\usepackage{cleveref}
+
+\setlength{\parskip}{0.3\baselineskip}
+%\setlength{\itemsep}{-0.3\baselineskip} --- does not work
+%\setlength{\itemsep}{2pt plus2pt minus2pt} --- does not work
+\AtBeginDocument{\addtocontents{toc}{\protect\setlength{\parskip}{0pt}}}
+%do not loosen toc by possibly large parskip
+\linespread{0.93} %compactify
+
+%compactify
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\rc{\topfraction}{0.85}
+\rc{\bottomfraction}{0.85}
+\rc{\textfraction}{0.15}
+\rc{\floatpagefraction}{0.7}
+\rc{\theHequation}{\theHsection\arabic{equation}}
+%needed for hyperref
+
+
+% \usepackage{movie15} % to include movies
+% \usepackage{hyperref} % prerequisite for movie15 -- these do not seem 
+% to work includeonly{em0.1,em1.8} % selects from include list below, 
+% but uses the other aux files and keeps eq. and sec. numberings mostly 
+% correct; omitting includeonly results in including all items -- then 
+% \include is equivalent to \clearpage\input{file}\clearpage.
+% each included file gets its own .aux file by include
+% \include{em0.1} etc.
+
+% Below we use \input, very simple.
+\begin{document}
+
+\begin{center}
+
+\thispagestyle{empty}
+
+\rule{10 cm}{2pt}
+
+\vspace{1.5cm}
+{ \Large Kwant project}
+
+\vspace{1.0cm}
+Nagy Dániel
+
+\vspace{0.5cm}
+Week 5: march 18. - march 24.
+
+\vspace{0.5cm}
+\today
+
+\vspace{0.25cm}
+\rule{10 cm}{2pt}
+
+\end{center}
+\newpage
+
+%\setcounter{page}{2}
+%\tableofcontents
+\newpage
+\phantomsection
+
+\section{Schedule for the semester}
+\begin{table}[ht]
+  \centering
+  \caption{Original schedule}
+  \begin{tabular}{|c|c|}
+  \hline
+  Week & Scheduled Task \\ [0.5ex]  \hline % inserts table %heading
+  feb. 18. - feb. 24. & Installing Kwant \& Running an example \\ \hline
+  feb. 25. - mar. 3. & Reading the documentation \& Running more examples \\ \hline
+  mar. 4 - mar. 10 & Reading theory of 2DEG \& Writing a 2DEG calculation \\ \hline 
+  mar. 11. - mar. 17. & 2DEG constriction in a magnetic field \\ \hline
+  mar. 18. -  mar. 24. & Graphene focusing \\ \hline
+  mar. 25. -  mar. 31. & Mid term report \\ \hline
+  apr. 1. -  apr. 7. & Topological Anderson Insulator/ Majorana fermion 1. \\ \hline
+  apr. 8. -  apr. 14. & Topological Anderson Insulator/ Majorana fermion 2. \\ \hline
+  easter holiday & - \\ \hline
+  apr. 22. - apr. 28. & Topological Anderson Insulator/ Majorana fermion 3. \\ \hline 
+  apr. 29. - may 5. & Topological Anderson Insulator/ Majorana fermion 4. \\ \hline 
+  Eötvös/Pázmány days & - \\ \hline
+  may 13. - may 19. & Final report \\ \hline
+
+  \end{tabular}
+\end{table}
+
+\newpage
+\begin{table}[ht]
+  \centering
+  \caption{Status}
+  \begin{tabular}{|c|c|}
+  \hline
+  Week & Scheduled Task \\ [0.5ex]  \hline % inserts table %heading
+  feb. 18. - feb. 24. & Installing Kwant \& Running an example  \checkmark \\ \hline
+  feb. 25. - mar. 3. & Reading the documentation \& Running more examples \checkmark \\ \hline
+  mar. 4 - mar. 10 & Struggling with graphene minimal conductivity - no result \\ \hline 
+  mar. 11. - mar. 17. & 2DEG basics \& Eigenstates and LDOS calculation \checkmark \\ \hline
+  mar. 18. -  mar. 24. & 2DEG in magnetic field \checkmark \\ \hline
+  mar. 25. -  mar. 31. & Mid term report \\ \hline
+  apr. 1. -  apr. 7. & Topological Anderson Insulator/ Majorana fermion 1. \\ \hline
+  apr. 8. -  apr. 14. & Topological Anderson Insulator/ Majorana fermion 2. \\ \hline
+  easter holiday & - \\ \hline
+  apr. 22. - apr. 28. & Topological Anderson Insulator/ Majorana fermion 3. \\ \hline 
+  apr. 29. - may 5. & Topological Anderson Insulator/ Majorana fermion 4. \\ \hline 
+  Eötvös/Pázmány days & - \\ \hline
+  may 13. - may 19. & Final report \\ \hline
+
+  \end{tabular}
+\end{table}
+
+\newpage
+\section{Progress so far}
+\begin{itemize}
+  \item Installing kwant 1.4.0 
+  \item Getting familiar with kwant: Sites, hoppings, builders
+  \item Creating simple and more complex tight-binding systems
+  \item Calculating transmission coefficients between two leads
+  \item Calculating eigenfunctions, local densities of states
+  \item Applying homogeneous magnetic field to a quantum point contact
+\end{itemize}
+
+\newpage
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/example-1-code.png} % second figure itself
+    %\caption{second figure}
+\end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/example-1.png} % first figure itself
+      %\caption{first figure}
+  \end{minipage}
+\end{figure}
+
+\newpage
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/example-circle-code.png} % second figure itself
+    %\caption{second figure}
+\end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/example-circle.png} % first figure itself
+      %\caption{first figure}
+  \end{minipage}
+\end{figure}
+
+
+\newpage
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/example-eigenfunc-code.png} % second figure itself
+    %\caption{second figure}
+\end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/example-eigenfunc.png} % first figure itself
+      %\caption{first figure}
+  \end{minipage}
+\end{figure}
+
+\newpage
+\section{Quantum point contact in magnetic field}
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/qpc_L10_W5.png} % second figure itself
+    %\caption{second figure}
+\end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/qpc_L15_W5.png} % first figure itself
+      %\caption{first figure}
+  \end{minipage}
+\end{figure}
+
+\newpage
+If the system is placed in magnetic field, according to Peierls, we have to replace the hopping matrix elements:
+\begin{equation*}
+  t_{ij} \rightarrow t_{ij} \times \exp\left(i \frac{e}{\hbar} \int_{\mathbf{x}_j}^{\mathbf{x}_i} \mathbf{A}(\mathbf{x}) d\mathbf{s}\right)
+\end{equation*}
+For 2D square lattices this can be written as 
+\begin{equation*}
+  \exp\left(i\, 2 \pi \frac{\phi}{\phi_0} \frac{(y_i + y_j)(x_i-x_j)}{2a^2} \right)  
+\end{equation*}
+where $\phi = B a^2$ is the flux through a unit cell in the square lattice, and $\phi_0 = h/e$ the flux quantum. 
+
+\newpage
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.55\textheight]{./media/example-peierls-code.png}
+  \caption{Adding Peierls-hoppings to the system}
+  \label{fig:peierls}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.35\textheight]{./media/phi-calc-code.png}
+  \caption{Calculating transmission for different magnetic fields.}
+  \label{fig:phicalc}
+  \end{center}
+\end{figure}
+
+\newpage
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/qpc_L10_W5_VS0_2_cond_phi_e1_5.png} % second figure itself
+    %\caption{second figure}
+  \end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/qpc_L15_W5_VS0_2_cond_phi_e1_5.png} % first figure itself
+      %\caption{first figure}
+  \end{minipage}
+\end{figure}
+
+\end{document}

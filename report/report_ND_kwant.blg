@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report_ND_kwant.aux
+The style file: plain.bst
+Database file #1: references.bib
+Warning--to sort, need author, organization, or key in kwantpage
+Warning--to sort, need author, organization, or key in kwantdoc
+Warning--empty title in kwantpage
+Warning--empty title in kwantdoc
+Warning--empty chapter and pages in datta_1995
+You've used 4 entries,
+            2118 wiz_defined-function locations,
+            515 strings with 4543 characters,
+and the built_in function-call counts, 907 in all, are:
+= -- 81
+> -- 32
+< -- 0
++ -- 14
+- -- 10
+* -- 62
+:= -- 144
+add.period$ -- 9
+call.type$ -- 4
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 9
+duplicate$ -- 40
+empty$ -- 89
+format.name$ -- 10
+if$ -- 191
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 3
+newline$ -- 19
+num.names$ -- 4
+pop$ -- 27
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 24
+stack$ -- 0
+substring$ -- 38
+swap$ -- 2
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 14
+warning$ -- 5
+while$ -- 5
+width$ -- 5
+write$ -- 34
+(There were 5 warnings)

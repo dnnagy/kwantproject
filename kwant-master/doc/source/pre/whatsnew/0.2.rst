@@ -1,0 +1,94 @@
+What's new in Kwant 0.2
+=======================
+
+This article explains the user-visible changes in Kwant 0.2.  Kwant 0.2 was
+released on 29 November 2012.
+
+Improved performance
+--------------------
+This has been the main focus of this release.  Through optimization a level of
+performance has been reached that we consider satisfactory: runs of Kwant for
+mid-sized (100x100 say) systems now typically spend most time in highly
+optimized libraries and not anymore in Python-implemented code.  For large,
+truly performance-critical systems almost all time is now spent in optimized
+libraries.
+
+An important optimization has been replacing NumPy for most uses within Kwant
+by tinyarray.  tinyarray provides a subset of NumPy's functionality in a way
+that is highly optimized for small arrays such as the tags of sites in Kwant.
+
+New MUMPS-based solver
+----------------------
+The code for sparse matrix solvers has been reorganized and a new solver has
+been added next to `kwant.solvers.sparse`: `kwant.solvers.mumps`.  The new
+solver uses the `MUMPS <http://graal.ens-lyon.fr/MUMPS/>`_ software package and
+is much (typically several times) faster than the UMFPACK-based old solver.
+In addition, MUMPS uses considerably less memory for a given system while at
+the same time it is able to take advantage of more than 2 GiB of RAM.
+
+New tutorial dealing with superconductivity
+-------------------------------------------
+:doc:`../../tutorial/superconductors`
+
+New `~kwant.plotter` module
+---------------------------
+`~kwant.plotter` has been rewritten using matplotlib, which allows
+plot post-processing, basic 3D plotting and many other features. Due to the
+possibility to easily modify a matplotlib plot after it has been generated,
+function `~kwant.plotter.plot` has much fewer input parameters, and is less
+flexible than its previous implementation. Its interface is also much more
+similar to that of matplotlib. For the detailed interface and input
+description check `~kwant.plotter.plot` documentation.
+
+The behavior of `~kwant.plotter.plot` with low level systems has changed.
+Arguments of plot which are functions are given site numbers in place of
+`~kwant.builder.Site` objects when plotting a low level system.  This
+provides an easy way to make the appearance of lines and symbols depend on
+computation results.
+
+A new function `~kwant.plotter.map` was implemented. It allows to show a map of
+spatial dependence of a function of a system site (e.g. density of states)
+without showing the sites themselves.
+
+`~kwant.lattice.TranslationalSymmetry` is used differently
+----------------------------------------------------------
+When constructing an instance of `~kwant.lattice.TranslationalSymmetry` a sole
+parameter used to be expected: A sequence of sequences of 1d real space
+vectors.  Now ``TranslationalSymmetry`` can take an arbitrary number of
+parameters, each of them a 1d real space vector.  This reduced the number of
+parantheses necessary in the common case where there is just a single parameter
+
+Example of old usage::
+
+    sym = kwant.TranslationalSymmetry([(-1, 0)])
+
+New usage::
+
+    sym = kwant.TranslationalSymmetry((-1, 0))
+
+Band structure functionality has been moved
+-------------------------------------------
+The functionality that used to be provided by the method ``energies`` of
+`kwant.system.InfiniteSystem` has been moved to the `kwant.physics` package.
+See the documentation of `kwant.physics.Bands` and
+:doc:`../../tutorial/spectrum`.
+
+Calculation of the local density of states
+------------------------------------------
+The new function of sparse solvers `~kwant.solvers.default.ldos`
+allows the calculation of the local density of states.
+
+Calculation of wave functions in the scattering region
+------------------------------------------------------
+(Kwant 0.3 update: ``wave_func`` has been renamed to
+`~kwant.solvers.default.wave_function`.)
+
+The new function of sparse solvers ``wave_func`` allows the calculation of the
+wave function in the scattering region due to any mode of any lead.
+
+Return value of sparse solver
+-----------------------------
+The function `~kwant.solvers.default.solve` of sparse solvers now
+always returns a single instance of ``BlockResult``.  The
+latter has been generalized to include more information for leads defined as
+infinite systems.

@@ -1,0 +1,205 @@
+What's new in Kwant 1.0
+=======================
+
+This article explains the new features in Kwant 1.0 compared to Kwant 0.2.
+Kwant 1.0 was released on 9 September 2013.  Please consult the `full list of
+changes in Kwant <https://git.kwant-project.org/kwant/log/?h=v1.0.5>`_ for all
+the changes up to the most recent bugfix release.
+
+
+Lattice and shape improvements
+------------------------------
+Lattices now have a method `~kwant.lattice.Polyatomic.neighbors`,
+which calculates all the n-th shortest possible hoppings on this lattice.  This
+replaces the ``nearest`` attribute that some lattices used to have.
+
+`~kwant.lattice.Polyatomic.shape` uses an improved flood-fill algorithm, making
+it work better on narrow ribbons (which were sometimes buggy before with
+non-square lattices). Additionally, it was made symmetry-aware: If
+`~kwant.lattice.Polyatomic.shape` is used with a lead, the shape does not have
+to be limited along the lead direction anymore.  In fact, if the shape function
+does not have the same symmetry as the lead, the result may be unexpected, so
+it is highly recommended to use shape functions that have the same symmetry as
+the lead.
+
+`~kwant.lattice.Monatomic.closest` now returns an exact, and not approximate
+closest point. A new method `~kwant.lattice.Monatomic.n_closest` was added,
+which returns the n closest lattice points.
+
+``possible_hoppings`` replaced by `~kwant.builder.HoppingKind`
+--------------------------------------------------------------
+The `~kwant.builder.Builder` method ``possible_hoppings`` has been rendered
+obsolete.  Where previously one would have had ::
+
+    for kind in lat.nearest:
+        syst[syst.possible_hoppings(*kind)] = t
+
+now it suffices to write ::
+
+    syst[lat.neighbors()] = t
+
+This is possible because `~kwant.builder.Builder` now accepts *functions* as
+keys in addition to `~kwant.builder.Site` objects and tuples of them
+(hoppings).  These functions are expected to yield either sites or hoppings,
+when given a builder instance as the sole argument. The use of such keys is to
+implement sets of sites or hoppings that depend on what is already present in
+the builder, such as `~kwant.builder.HoppingKind`.  In the above example,
+``lat.neighbors()`` is a list of ``HoppingKind`` objects.
+
+Some renames
+------------
+* site groups are now called site families.  This affects all the names that
+  used to contain "group" or "groups".
+* lead slices are now referred to as lead cells:  This affects all names that
+  used to contain "slice" or "slices" in the context of leads.
+* ``self_energy`` has been renamed to ``selfenergy`` in all cases, most notably
+  in `kwant.physics.selfenergy`.
+* ``wave_func`` has been renamed to `~kwant.solvers.default.wave_function`,
+* ``MonatomicLattice`` has been renamed to `~kwant.lattice.Monatomic`,
+* ``PolyatomicLattice`` has been renamed to `~kwant.lattice.Polyatomic`.
+* ``solve`` was split into two functions: `~kwant.solvers.default.smatrix`, and
+  `~kwant.solvers.default.greens_function`. The former calculates the
+  scattering matrix, the latter the retarded Green's function between the sites
+  adjacent to the leads. It is temporarily not possible to mix self-energy and
+  modes leads within the same system.
+* The object that contained the results, ``BlockResult`` was also split into
+  `~kwant.solvers.common.SMatrix` and `~kwant.solvers.common.GreensFunction`.
+
+Band structure plots
+--------------------
+A convenience function `~kwant.plotter.bands` for quick plotting of band
+structure was implemented.
+
+Immutable site families
+-----------------------
+In order to make naming more consistent, ``kwant.make_lattice`` was renamed and
+can be found now as `kwant.lattice.general`. Classes ``Chain``, ``Square``,
+and ``Honeycomb`` from `~kwant.lattice` were made functions
+`~kwant.lattice.chain`, `~kwant.lattice.square`, and
+`~kwant.lattice.honeycomb`.
+
+In previous versions if one executed ``a = kwant.lattice.square(); b =
+kwant.lattice.square()`` then ``a`` and ``b`` were actually different
+lattices. This often led to confusions in more convoluted use cases, so this
+behavior was changed. Now two site families created with the same parameters
+are actually indistinguishable by Kwant. If it is desired to make two site
+families which have the same geometry, but mean different things, as for
+instance in :doc:`../../tutorial/superconductors`, then the ``name`` argument has to
+be used when creating a lattice, e.g. ``a = kwant.lattice.square(name='a'); b =
+kwant.lattice.square(name='b')``.
+
+Parameters to Hamiltonian
+-------------------------
+Kwant now allows the Hamiltonian matrix elements to be described with functions
+that depend on an arbitrary number of parameters in addition to the sites on
+which they are defined.
+
+Previously, functions defining the Hamiltonian matrix elements had to have the
+following prototypes::
+
+    def onsite(site):
+        ...
+
+    def hopping(site1, site2):
+        ...
+
+If the Hamiltonian elements need to depend on some other external parameters
+(e.g. magnetic field) then those had to be provided by some other means than
+regular function parameters (e.g. global variables).
+
+Now the value functions may accept arbitrary arguments after the `Site`
+arguments.  These extra arguments can be specified when
+`~kwant.solvers.default.smatrix` is called by setting the arguments:
+
+args
+    A tuple of values to be passed as the positional arguments to the
+    Hamiltonian value functions (not including the `Site` arguments).
+
+For example, if the hopping and onsite Hamiltonian value functions have
+the following prototype::
+
+    def onsite(site, t, B, pot):
+        ...
+
+    def hopping(site1, site2, t, B, pot):
+        ...
+
+then the values of ``t``, ``B`` and ``pot`` for which to solve the system can be
+passed to `~kwant.solvers.default.smatrix` like this::
+
+    kwant.smatrix(syst, energy,
+                  args=(2., 3., 4.))
+
+With many parameters it can be less error-prone to collect all of them into a
+single object and pass this object as the single argument.  Such a parameter
+collection could be a dictionary, or a class instance, for example::
+
+    class SimpleNamespace(object):
+        def __init__(self, **kwargs):
+            self.__dict__.update(kwargs)
+    # With Python >= 3.3 we can have instead:
+    # from types import SimpleNamespace
+
+    def onsite(site, p):
+        return p.mu * ...
+
+    def hopping(site1, site2, p):
+        return p.t * exp(-1j * p.B * ...)
+
+    params = SimpleNamespace(t=1, mu=2)
+    for params.B in B_values:
+        kwant.smatrix(syst, energy, args=[params])
+
+Arguments can be passed in an equivalent way to
+`~kwant.solvers.default.wave_function`,
+`~kwant.system.System.hamiltonian_submatrix`, etc.
+
+Calculation of modes separated from solving
+-------------------------------------------
+The interface that solvers expect from leads attached to a
+`~kwant.system.FiniteSystem` has been simplified and codified (see there).
+Similar to self-energy, calculation of modes is now the lead's own
+responsibility.
+
+The new class `~kwant.builder.ModesLead` allows to attach leads that have a
+custom way of calculating their modes (e.g. ideal leads) directly to a
+`~kwant.builder.Builder`.
+
+Modes or self-energies can now be precomputed before passing the system to a
+solver, using the method `~kwant.system.FiniteSystem.precalculate`. This may
+save time, when the linear system has to be solved many times with the same
+lead parameters.
+
+Change of the modes and lead_info format
+----------------------------------------
+The function `~kwant.physics.modes` now returns two objects:
+`~kwant.physics.PropagatingModes` and `~kwant.physics.StabilizedModes`.  The
+first one contains the wave functions of all the propagating modes in real
+space, as well as their velocities and momenta.  All these quantities were
+previously not directly available.  The second object contains the propagating
+and evanescent modes in the compressed format expected by the sparse solver
+(previously this was the sole output of `~kwant.physics.modes`).  Accordingly,
+the ``lead_info`` attribute of `~kwant.solvers.common.SMatrix` contains the
+real space information about the modes in the leads (a list of
+`~kwant.physics.PropagatingModes` objects).
+
+New module for random-access random numbers
+-------------------------------------------
+The module `kwant.digest` provides functions that given some input compute a
+"random" output that depends on the input in a (cryptographically) intractable
+way.  This functionality is useful for introducing disorder, e.g.::
+
+    def onsite(site):
+        return 0.3 * kwant.digest.gauss(repr(site)) + 4
+
+New module for random matrix theory Hamiltonians
+------------------------------------------------
+The module `kwant.rmt` supports the creation of random matrix theory
+Hamiltonians.
+
+Improved plotting functionality
+-------------------------------
+The plotting functionality has been extended. By default, symbols and lines in
+plots are now relative to the system coordinates, i.e. will scale accordingly
+if different zoom-levels are used. Different styles for representing sites and
+hoppings are now possible. 3D plotting has been made more efficient.

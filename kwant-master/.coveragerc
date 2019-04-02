@@ -1,0 +1,13 @@
+[run]
+plugins = Cython.Coverage
+omit =
+     */tests/*
+     kwant/graph/dissection.py
+     kwant/_kwant_version.py
+     */__init__.py
+branch = True
+[report]
+exclude_lines =
+    skip coverage
+    @abc.abstractmethod
+    @abc.abstractproperty
