@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1554293124 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.pdf" "week7_ND" 1554293125
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.aux" 1554293124 2593 e058fce7af77b1df998e9f939569fbe1 ""
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.tex" 1554293122 10874 a69e7b9b4e6b8b6c61833596fef89a89 ""
+["pdflatex"] 1554302291 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.pdf" "week7_ND" 1554302293
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.aux" 1554302292 3704 b5dbd2b8e8cfc7d5c8aae96a4cbb375c ""
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.tex" 1554302289 12382 ee4d086cf4c55deb34eb562815bd41fe ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc" 1254269338 3031 6c4d3515bf7115d8518af1c9ab97ca44 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -150,11 +150,15 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1490860339 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1490860398 3873397 50936b75940aae539edfe57da8c8d615 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "week7_ND.aux" 1554293124 2593 e058fce7af77b1df998e9f939569fbe1 ""
-  "week7_ND.tex" 1554293122 10874 a69e7b9b4e6b8b6c61833596fef89a89 ""
+  "media/TI-band-structure.png" 1554297287 44064 37da15462df06d31cd47ccac13faeb47 ""
+  "media/bulk_graphene_bands_3d_cropped.png" 1554299922 634331 dfe305a41821de983119f03064747b19 ""
+  "media/edge_channels_sketch.png" 1554293781 50947 e6572bcef41e018519a182466b6b0d9d ""
+  "media/haldane_bandstruct_t2=0_m=0dot25-cropped.png" 1554302167 642308 49552cb2461015d5bfe0276b73ea1bd3 ""
+  "week7_ND.aux" 1554302292 3704 b5dbd2b8e8cfc7d5c8aae96a4cbb375c ""
+  "week7_ND.tex" 1554302289 12382 ee4d086cf4c55deb34eb562815bd41fe ""
   (generated)
-  "week7_ND.log"
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.log"
-  "week7_ND.aux"
   "week7_ND.pdf"
   "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.pdf"
+  "week7_ND.aux"
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/PRESENTATION/april4/week7_ND.log"
+  "week7_ND.log"
