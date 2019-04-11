@@ -37,6 +37,8 @@ a5paper,left=15pt,right=15pt,top=3pt,bottom=3pt,%
 \newcommand{\nc}{\newcommand} % a newcommand rövidítése
 \newcommand{\rc}{\renewcommand} % a renewcommand rövidítése
 
+\newcommand{\bb}[1]{\mathbf{#1}}
+\newcommand{\dd}{\mathrm{d}}
 
 %Creates header and footer w time, section titles, etc. 
 %Here the stripes are made narrow. 
@@ -59,6 +61,7 @@ a5paper,left=15pt,right=15pt,top=3pt,bottom=3pt,%
 \usepackage{bookmark}
 \usepackage[medium,compact,toctitles]{titlesec}
 \usepackage[active]{srcltx}
+\usepackage{braket}
 %\usepackage{savetrees} 
 % others: 
 
@@ -243,8 +246,8 @@ a5paper,left=15pt,right=15pt,top=3pt,bottom=3pt,%
 Nagy Dániel
 
 \vspace{0.5cm}
-Week 7: april 1. - april 7. \\
-Topological Anderson Insulator 1.
+Week 8: april 7. - april 14. \\
+Topological Anderson Insulator 2.
 
 \vspace{0.5cm}
 \today
@@ -435,4 +438,123 @@ What are topological Andreson insulators?
 \begin{minipage}[c]{0.5\textwidth}
   \includegraphics[width=\textwidth]{./media/expected-result.png}
 \end{minipage}
+
+\newpage
+\section{Experimenting with disorder}
+\begin{itemize}
+  \item The physics of a topological insulator is unaffected by weak
+  disorder, but is destroyed by large disorder
+  \item BUT: Disorder can create a topological insulator for parameters where the system was metallic in 
+  the absence of disorder
+  \item These states are called topological Anderson insulators
+  \item Disorder can be modeled as random on-site energy with a uniform distribution within $[-W_0, W_0]$
+\end{itemize}
+
+\newpage
+\begin{equation*}
+  t_{ij} \rightarrow t_{ij} \times \exp\left(i \frac{e}{\hbar} \int_{\mathbf{x}_j}^{\mathbf{x}_i} \mathbf{A}(\mathbf{x}) d\mathbf{s}\right)
+  = \exp\left(i\, 2 \pi \frac{\phi}{\phi_0} \frac{(y_i + y_j)(x_i-x_j)}{2a^2} \right) \textrm{, where}~\phi = B a^2
+\end{equation*}
+\begin{equation*}
+  V_\text{dis} = \sum_i W_i \ket i \bra i
+\end{equation*}
+\begin{equation*}
+  \mathcal H = \sum\limits_i V_{\textrm{dis}}\ket i \bra i + \sum\limits_{<i,j>} t_{ij} \ket i \bra j
+\end{equation*}
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.55\textheight]{./media/square_lattice_W=30_L=50.png}
+  \caption{Creating a simple square lattice}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+
+\newpage
+\begin{figure}
+  \centering
+  \begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=1.0\textwidth]{./media/transmission_square_lat_phi=0dot0.png} % second figure itself
+    \caption{Transmission in function of disorder for $\phi=0$}
+  \end{minipage}\hfill
+  \begin{minipage}{0.49\textwidth}
+      \centering
+      \includegraphics[width=1.0\textwidth]{./media/transmission_square_lat_phi=0dot2.png} % first figure itself
+      \caption{Transmission in function of disorder for $\phi=0.2$}
+  \end{minipage}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.85\textheight]{./media/graphene_lattice_W=20_L=40.png}
+  \caption{Simple graphene lattice}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+
+\newpage
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.85\textheight]{./media/transmission_graphene_lat_phi=0dot0Wmax=5.png}
+  \caption{Transmission in function of disorder for $\phi=0$}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.85\textheight]{./media/transmission_graphene_lat_phi=0dot0Wmax=5.png}
+  \caption{Transmission in function of disorder for $\phi=0.2$}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+
+
+\newpage
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.85\textheight]{./media/transmission_graphene_lat_phi=0dot4Wmax=5.png}
+  \caption{Transmission in function of disorder for $\phi=0.4$}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[height=0.85\textheight]{./media/transmission_graphene_lat_phi=0dot6Wmax=5.png}
+  \caption{Transmission in function of disorder for $\phi=0.6$}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
+
+\newpage
+\section*{Next step}
+The article about TAI (\url{https://arxiv.org/abs/0811.3045}) specifies the Hamiltonian for HgTe/CdTe:
+\begin{equation*}
+  \mathcal H(\bb k) = \left(
+    \begin{array}{cc}
+      h(\bb k) & 0 \\
+      0 & h^{\dagger}(-\bb k) 
+    \end{array}
+    \right)
+\end{equation*}
+\begin{equation*}
+  h(\bb k) = \epsilon(k) + \bb d (\bb k)\bb\sigma \textrm{, } \, \bb k = (k_x, k_y) 
+\end{equation*}
+\begin{equation*}
+  \bb d(\bb k ) = (Ak_x, Ak_y, M-Bk^2) \textrm{; } \, \epsilon(k) = C-Dk^2
+\end{equation*}
+Problem:
+\begin{itemize}
+  \item Kwant builders accept only scalars or matrices that are in real space, not in $\bb k$-space.
+  \item How can I implement the above Hamiltonian in kwant?
+\end{itemize}
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=0.85\textwidth]{./media/k-space-problem.png}
+  % \caption{Transmission in function of disorder for $\phi=0.6$}
+  % \label{fig:peierls}
+  \end{center}
+\end{figure}
 \end{document}

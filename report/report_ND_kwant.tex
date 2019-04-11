@@ -162,6 +162,8 @@ and
 \end{equation*}
 The sum above is over all the neighbors of the atom at positions $\bb R_j$, and 
 the values $\gamma (|\bb R_j|)$ are called overlap integrals.
+
+
 % \textcolor{red}{innen nem jo}
 % Denoting with $\ket n = \varphi_{n, \alpha}(\bb r)$ the atomic wavefunction localized to the ion at $\bb{R}_n$, $\ket\Psi$ can be
 % written as:
@@ -190,6 +192,30 @@ the values $\gamma (|\bb R_j|)$ are called overlap integrals.
 % $E_0$ is the \textit{on-site energy} and is not equal to the atomic energy level, due to the perturbation of the neigboring
 % electrons. $\gamma$ is an empirical parameter and is called the \textit{hopping amplitude}.
 \subsection*{Second quantization formalism}
+In the second quantization formalism, we are considering a lattice with $N$ sites, labeled by the positions
+$\bb r_j, j \in \{1,...,N\}$. The state of the lattice can be expressed in terms of the number of particles at each site.
+This is called the occupation number representation: $\ket\Psi\equiv \ket{n_1,n_2,...,n_N}$. The ground state (vacuum state) is
+$\ket 0 = \ket{0,...,0}$. Given this, we can define creation and annihillation operators. For bosonic particles, the creation
+operator $b^\dagger_j$ creates a boson at $\bb r_j$:
+\begin{equation*}
+  b^\dagger_j\ket{n_1,...,n_j,...n_N} = \sqrt{n_j+1}\ket{n_1,...,n_j+1,...n_N}
+\end{equation*}
+The annihillation operator $b_j$ destroys a boson at $\bb r_j$:
+\begin{equation*}
+  b_j\ket{n_1,...,n_j,...n_N} = \sqrt{n_j}\ket{n_1,...,n_j-1,...n_N}
+\end{equation*}
+From these relations, we can derive the bosonic commutation relations:
+\begin{align*}
+  [b^\dagger_l, b^\dagger_m] = [b_l,b_m]=0 \textrm{,} \\
+  [b_l, b^\dagger_m] = \delta_{lm}
+\end{align*}
+Fermionic creation and annihillation operators are slightly different:
+\begin{equation*}
+  \begin{array}{cc}
+    c^\dagger_j\ket{n_1,...,n_j,...,n_N} = &  \\
+    = (-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j+1}\ket{n_1,...,n_j+1,...,n_N} &
+  \end{array}
+\end{equation*}
 
 \section*{The Kwant package}
 Kwant is a Python package for numerical quantum transport calculations \cite{kwant-paper} 
@@ -211,6 +237,10 @@ to the lead region is described with another block-matrix $V_{LS}$. The Hamilton
     \end{array}
   \right)
 \end{equation*}
+
+\par In kwant, designing a tight-binding system is a mapping between the vertices and edges (sites and hoppings) of
+a graph to the corresponding values of the Hamiltonian. This is done using a \texttt{Builder} object. Sites can
+be often classified by type of atom or the lattice to which they belong \cite{kwant-paper}.
 
 \section*{Quantum point contact}
 \section*{Graphene minimal conductivity}
@@ -238,8 +268,6 @@ to the lead region is described with another block-matrix $V_{LS}$. The Hamilton
 \appendix
 \section{Some appendix}
 \subsection{Some subsection}
-\lipsum[6]
-\lipsum[7]
 
 % \begin{figure}[htb]
 %     \begin{minipage}[t]{.49\textwidth}
