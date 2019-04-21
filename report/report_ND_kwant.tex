@@ -164,33 +164,6 @@ The sum above is over all the neighbors of the atom at positions $\bb R_j$, and
 the values $\gamma (|\bb R_j|)$ are called overlap integrals.
 
 
-% \textcolor{red}{innen nem jo}
-% Denoting with $\ket n = \varphi_{n, \alpha}(\bb r)$ the atomic wavefunction localized to the ion at $\bb{R}_n$, $\ket\Psi$ can be
-% written as:
-% \begin{equation*}
-%   \ket\Psi = \sum\limits_{n} b_n \ket n
-% \end{equation*}
-% which is written back to the full Schrödinger-equation:
-% \begin{equation*}
-%   \sum\limits_n b_n \hat H \ket n = E \sum\limits_n b_n \ket n
-% \end{equation*}
-% To be able to numerically solve this eigenvalue-problem, we need to calculate the matrix elements of the 
-% Hamiltonian:
-% \begin{equation*}
-%   \sum\limits_n b_n \braket{m | \hat H | n} = E \sum\limits_n b_n \braket{m|n}
-% \end{equation*}
-% In the nearest-neighbor approximation, only the first neighbors are taken into consideration, all other matrix elements
-% are neglected.
-% In this case, 
-% \begin{equation*}
-%   H_{nn} = \braket{n|\hat H|n} = E_0 \textrm{, and}
-% \end{equation*}
-% \begin{equation*}
-%   H_{mn} = \braket{m|\hat H|n} = -\gamma \textrm{, if $m$ and $n$ are neighbors.}
-% \end{equation*}
-
-% $E_0$ is the \textit{on-site energy} and is not equal to the atomic energy level, due to the perturbation of the neigboring
-% electrons. $\gamma$ is an empirical parameter and is called the \textit{hopping amplitude}.
 \subsection*{Second quantization formalism}
 In the second quantization formalism, we are considering a lattice with $N$ sites, labeled by the positions
 $\bb r_j, j \in \{1,...,N\}$. The state of the lattice can be expressed in terms of the number of particles at each site.
@@ -206,16 +179,46 @@ The annihillation operator $b_j$ destroys a boson at $\bb r_j$:
 \end{equation*}
 From these relations, we can derive the bosonic commutation relations:
 \begin{align*}
-  [b^\dagger_l, b^\dagger_m] = [b_l,b_m]=0 \textrm{,} \\
-  [b_l, b^\dagger_m] = \delta_{lm}
+  &[b_l, b^\dagger_m] = \delta_{lm} \\
+  &[b^\dagger_l, b^\dagger_m] = [b_l,b_m]=0 \textrm{,}
 \end{align*}
 Fermionic creation and annihillation operators are slightly different:
-\begin{equation*}
-  \begin{array}{cc}
-    c^\dagger_j\ket{n_1,...,n_j,...,n_N} = &  \\
-    = (-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j+1}\ket{n_1,...,n_j+1,...,n_N} &
-  \end{array}
-\end{equation*}
+\begin{multline*}
+  c^\dagger_j\ket{n_1,...,n_j,...,n_N} = \\
+  = (-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j+1}\ket{n_1,...,n_j+1,...,n_N}
+\end{multline*}
+
+\begin{multline*}
+  c_j \ket{n_1,...,n_j,...,n_N} = \\
+  =(-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j}\ket{n_1,...,n_j-1,...,n_N}
+\end{multline*}
+
+If we include spin states $\sigma$, the operators $c^\dagger_{i\sigma}$, $c_{j\sigma'}$ satisfy the anticommutation
+relations:
+\begin{align*}
+  &\{ c_{i\sigma}, c^\dagger_{j\sigma'} \} = \delta_{ij}\delta_{\sigma\sigma'} \\
+  &\{ c_{i\sigma}, c_{j\sigma'} \} = \{ c^\dagger_{i\sigma}, c^\dagger_{j\sigma'} \} = 0
+\end{align*}
+
+\par We can also define momentum-space creation and annihillation operators $c^\dagger_{\bb k \sigma},
+c_{\bb k \sigma'}$:
+\begin{align*}
+  &c^\dagger_{\bb k}\ket 0 = \ket {\bb k} \\
+  &c_{\bb k}\ket {\bb k} = \ket 0
+\end{align*}
+
+They can be transformed back to real space
+\begin{align*}
+  &c^\dagger_j = \frac{1}{\sqrt N}\sum\limits_{\bb k}e^{-i\bb k \bb r_j}c^\dagger_{\bb k} \\
+  &c_j = \frac{1}{\sqrt N}\sum\limits_{\bb k}e^{i\bb k \bb r_j}c_j
+\end{align*}
+and vice versa:
+\begin{align*}
+  &c^\dagger_{\bb k} = \frac{1}{\sqrt N}\sum\limits_{j}e^{i\bb k \bb r_j} c^\dagger_j \\
+  &c_{\bb k} = \frac{1}{\sqrt N}\sum\limits_{j}e^{-i\bb k \bb r_j} c_j
+\end{align*}
+
+
 
 \section*{The Kwant package}
 Kwant is a Python package for numerical quantum transport calculations \cite{kwant-paper} 
@@ -243,6 +246,34 @@ a graph to the corresponding values of the Hamiltonian. This is done using a \te
 be often classified by type of atom or the lattice to which they belong \cite{kwant-paper}.
 
 \section*{Quantum point contact}
+If a tight-binding system is placed in magnetic field, this can be taken into account by using Peierls' substitution:
+\begin{equation*}
+  t_{ij} \rightarrow t_{ij} \times \exp\left(i \frac{e}{\hbar} \int_{\mathbf{x}_j}^{\mathbf{x}_i} \mathbf{A}(\mathbf{x}) d\mathbf{s}\right)
+\end{equation*}
+
+For 2D square lattices this can be rewritten as 
+\begin{equation*}
+  \exp\left(i\, 2 \pi \frac{\phi}{\phi_0} \frac{(y_i + y_j)(x_i-x_j)}{2a^2} \right)  
+\end{equation*}
+where $\phi = B a^2$ is the flux through a unit cell in the square lattice,
+and $\phi_0 = h/e$ is the magnetic flux quantum. 
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/qpc_L15_W5.png}
+  \caption{A quantum point contact of widts $W=5$ and length $L=15$ defined and plotted using kwant.}
+  \label{fig:qpc_L15_W5}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[h!]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/qpc_L15_W5_VS0_2_cond_phi_e1_5.png}
+  \caption{Transmission coefficient of a quantum point contact as a function of the external magnetic flux.}
+  \label{fig:qpc_L15_W5_VS0_2_cond_phi_e1_5}
+  \end{center}
+\end{figure}
 \section*{Graphene minimal conductivity}
 % The second ecuation is due to the translational symmetry of the system:$\braket{n-1|\hat H|n} = \braket{n|\hat H|n+1}
 % = \braket{n+1|\hat H|n}^{*}$
