@@ -183,15 +183,15 @@ From these relations, we can derive the bosonic commutation relations:
   &[b^\dagger_l, b^\dagger_m] = [b_l,b_m]=0 \textrm{,}
 \end{align*}
 Fermionic creation and annihillation operators are slightly different:
-\begin{multline*}
-  c^\dagger_j\ket{n_1,...,n_j,...,n_N} = \\
-  = (-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j+1}\ket{n_1,...,n_j+1,...,n_N}
-\end{multline*}
+\begin{align*}
+  &c^\dagger_j\ket{n_1,...,n_j,...,n_N} = \\
+  &= (-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j+1}\ket{n_1,...,n_j+1,...,n_N}
+\end{align*}
 
-\begin{multline*}
-  c_j \ket{n_1,...,n_j,...,n_N} = \\
-  =(-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j}\ket{n_1,...,n_j-1,...,n_N}
-\end{multline*}
+\begin{align*}
+  &c_j \ket{n_1,...,n_j,...,n_N} = \\
+  &=(-1)^{\sum\limits_{k=1}^{j-1} n_k}\sqrt{n_j}\ket{n_1,...,n_j-1,...,n_N}
+\end{align*}
 
 If we include spin states $\sigma$, the operators $c^\dagger_{i\sigma}$, $c_{j\sigma'}$ satisfy the anticommutation
 relations:
@@ -218,8 +218,34 @@ and vice versa:
   &c_{\bb k} = \frac{1}{\sqrt N}\sum\limits_{j}e^{-i\bb k \bb r_j} c_j
 \end{align*}
 
+In second quantization formalism, single-particle operators (operators which involve a sum of single particles)
+can be written as 
+\begin{equation*}
+  \hat F = \sum\limits_{l,l'} \braket{l | \hat f | l'}a^\dagger_{l}a_{l'}
+\end{equation*}
+where,
+\begin{equation*}
+  \braket{l | \hat f | l'} = \int \dd^3\bb r \phi^{*}_{l}(\bb r) \hat f(\bb r, \bb p) \phi_{l'}(\bb r)
+\end{equation*}
 
+Using these equations, we can write the second-quantized Hamiltonian for free electrons in 
+momentum-space and position-space as follows:
+\begin{align*}
+  &\hat{\mathcal H}_{\textrm{free}} = \sum\limits_{\bb k, \sigma}\epsilon^{\textrm{free}}_{\bb k} c^\dagger_{\bb k, \sigma}
+  c_{\bb k, \sigma} \\
+  &=\frac{1}{N}\sum\limits_{i,j,\sigma}\sum\limits_{\bb k} \epsilon^{\textrm{free}}_{\bb k} 
+  e^{i \bb k (\bb r_i - \bb r_j)} c^\dagger_{i\sigma}c_{j\sigma}
+\end{align*} 
+where, 
+\begin{equation*}
+  \epsilon^{\textrm{free}}_{\bb k} = \frac{\hbar^2k^2}{2m}\text{.}
+\end{equation*}
 
+The second-quantized form of the tight binding Hamiltonian is 
+\begin{align*}
+  &\hat{\mathcal H} = -t \sum\limits_{<i,j>,\sigma} (c^\dagger_{i\sigma}c_{j\sigma} + c^\dagger_{j\sigma}c_{i\sigma})\\
+  &=\sum\limits_{\bb k, \sigma} \epsilon^{\textrm{tb}}_{\bb k}c^\dagger_{\bb k\sigma}c_{\bb k \sigma}
+\end{align*}
 \section*{The Kwant package}
 Kwant is a Python package for numerical quantum transport calculations \cite{kwant-paper} 
 designed such that the natural concepts of the theory of quantum transport (lattices, symmetries,
@@ -246,6 +272,43 @@ a graph to the corresponding values of the Hamiltonian. This is done using a \te
 be often classified by type of atom or the lattice to which they belong \cite{kwant-paper}.
 
 \section*{Quantum point contact}
+
+In kwant, it is easy to define a two-dimensional tight binding system using the \texttt{Builder} class.
+I created a simple quantum point contact shown in figure \ref{fig:2degconst_W5_L10}.
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/2degconst_W5_L10.png}
+  \caption{Plot of a square lattice quantum point contact of width $W=5$ and
+  length $L=10$ defined in kwant.}
+  \label{fig:2degconst_W5_L10}
+  \end{center}
+\end{figure}
+
+The quantum point contacts have a specific, quantized conductance in function of energy \cite{QPCarticle}.
+I calculated the transmission coefficients of the structure shown in figure \ref{fig:2degconst_W5_L10},
+and plotted against the energy. The results (shown in fig. \ref{fig:cond_2deg_W5_L10_VL6_0_VS6_0.png}.)
+reflect the transmission quantization presented in \cite{QPCarticle}.
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/cond_2deg_W5_L10_VL6_0_VS6_0.png}
+  \caption{Transmission coefficients calculated using the system shown in figure \ref{fig:2degconst_W5_L10}.
+  The potential in the scattering region and in leads is $V_L=V_S=6\textrm{eV}$, while the
+  hopping energy is $t=-2\textrm{eV}$.}
+  \label{fig:cond_2deg_W5_L10_VL6_0_VS6_0.png}
+  \end{center}
+\end{figure}
+
+Using kwants built-in function \texttt{kwant.physics.two\_terminal\_shotnoise},
+I was able to easily calculate the shot-noise \cite{shotnoise} between leads. 
+I created the structure shown on figure \ref{fig:2degconst_W5_L10}, then calculated
+the two-terminal shot-noise between leads. The results are shown on figure \ref{fig:shotnoise_2deg_W5_L10_VL6_0_VS6_0}.
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/shotnoise_2deg_W5_L10_VL6_0_VS6_0.png}
+  \caption{Shot noise in function of the electron energy.}
+  \label{fig:shotnoise_2deg_W5_L10_VL6_0_VS6_0}
+  \end{center}
+\end{figure}
 If a tight-binding system is placed in magnetic field, this can be taken into account by using Peierls' substitution:
 \begin{equation*}
   t_{ij} \rightarrow t_{ij} \times \exp\left(i \frac{e}{\hbar} \int_{\mathbf{x}_j}^{\mathbf{x}_i} \mathbf{A}(\mathbf{x}) d\mathbf{s}\right)
@@ -256,34 +319,90 @@ For 2D square lattices this can be rewritten as
   \exp\left(i\, 2 \pi \frac{\phi}{\phi_0} \frac{(y_i + y_j)(x_i-x_j)}{2a^2} \right)  
 \end{equation*}
 where $\phi = B a^2$ is the flux through a unit cell in the square lattice,
-and $\phi_0 = h/e$ is the magnetic flux quantum. 
+and $\phi_0 = h/e$ is the magnetic flux quantum. To study the effect of magnetic field in case of 
+2D square lattices, I defined a quantum point contact in kwant. This structure is shown on figure
+\ref{fig:qpc_L15_W5}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \begin{center}
   \includegraphics[width=0.45\textwidth]{./media/qpc_L15_W5.png}
-  \caption{A quantum point contact of widts $W=5$ and length $L=15$ defined and plotted using kwant.}
+  \caption{A quantum point contact of width $W=5$ and length $L=15$ defined and plotted using kwant.}
   \label{fig:qpc_L15_W5}
   \end{center}
 \end{figure}
 
+Using kwant's built-in functions, I calculated the transmission coefficients between leads $0$
+and $1$, for a range of magnetic field strengths. Th results are plotted on figure \ref{fig:qpc_L15_W5_VS0_2_cond_phi_e1_5}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
   \begin{center}
   \includegraphics[width=0.45\textwidth]{./media/qpc_L15_W5_VS0_2_cond_phi_e1_5.png}
   \caption{Transmission coefficient of a quantum point contact as a function of the external magnetic flux.}
   \label{fig:qpc_L15_W5_VS0_2_cond_phi_e1_5}
   \end{center}
 \end{figure}
+
 \section*{Graphene minimal conductivity}
-% The second ecuation is due to the translational symmetry of the system:$\braket{n-1|\hat H|n} = \braket{n|\hat H|n+1}
-% = \braket{n+1|\hat H|n}^{*}$
-% \begin{figure}[h!]
-%     \begin{center}
-%     \includegraphics[width=0.45\textwidth]{./media/img1.png}
-%     \caption{Some figure}
-%     \label{fig:fig1}
-%     \end{center}
-% \end{figure}
+
+
+\section*{topological Anderson Insulators}
+\begin{equation*}
+  \mathcal H = \sum\limits_i V_{\textrm{dis}}\ket i \bra i + \sum\limits_{<i,j>} t_{ij} \ket i \bra j
+\end{equation*}
+\begin{equation*}
+  V_\text{dis} = \sum_i W_i \ket i \bra i
+\end{equation*}
+\begin{equation*}
+  t_{ij} = \exp\left(i\, 2 \pi \frac{\phi}{\phi_0} \frac{(y_i + y_j)(x_i-x_j)}{2a^2} \right)
+\end{equation*}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/square_lattice_W=30_L=50.png}
+  \caption{}
+  \label{fig:square_lattice_W_30_L_50}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/transmission_square_lat_phi=0dot0.png}
+  \caption{}
+  \label{fig:transmission_square_lat_phi_0dot0}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/transmission_square_lat_phi=0dot2.png}
+  \caption{}
+  \label{fig:transmission_square_lat_phi_0dot2.png}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/graphene_lattice_W=20_L=40.png}
+  \caption{}
+  \label{fig:graphene_lattice_W_20_L_40.png}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/transmission_graphene_lat_phi=0dot0Wmax=5.png}
+  \caption{}
+  \label{fig:transmission_graphene_lat_phi_0dot0Wmax_5.png}
+  \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  \includegraphics[width=0.45\textwidth]{./media/transmission_graphene_lat_phi=0dot6Wmax=5.png}
+  \caption{}
+  \label{fig:transmission_graphene_lat_phi_0dot6Wmax_5.png}
+  \end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%
 % References %
@@ -299,20 +418,6 @@ and $\phi_0 = h/e$ is the magnetic flux quantum.
 \appendix
 \section{Some appendix}
 \subsection{Some subsection}
-
-% \begin{figure}[htb]
-%     \begin{minipage}[t]{.49\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{./media/img2.png}
-%         \caption{Image 2}\label{fig:fig2}
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[t]{.49\textwidth}
-%         \centering
-%         \includegraphics[width=\textwidth]{./media/img3.png}
-%         \caption{Image 3}\label{fig:fig3}
-%     \end{minipage}
-% \end{figure}
 
 
 \end{document}

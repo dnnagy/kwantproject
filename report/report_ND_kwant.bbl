@@ -19,4 +19,32 @@ Christoph~W. {Groth}, Michael {Wimmer}, Anton~R. {Akhmerov}, and Xavier
 \newblock {Kwant: a software package for quantum transport}.
 \newblock {\em New Journal of Physics}, 16:063065, Jun 2014.
 
+\bibitem{AndersonInsulatorNumerical}
+Hua {Jiang}, Lei {Wang}, Qing-Feng {Sun}, and X.~C. {Xie}.
+\newblock {Numerical study of the topological Anderson insulator in HgTe/CdTe
+  quantum wells}.
+\newblock {\em Physical Review B}, 80(16):165316, Oct 2009.
+
+\bibitem{andersoninsulator}
+Jian {Li}, Rui-Lin {Chu}, J.~K. {Jain}, and Shun-Qing {Shen}.
+\newblock {Topological Anderson Insulator}.
+\newblock {\em \prl}, 102(13):136806, Apr 2009.
+
+\bibitem{minimalconductivity}
+Thibaud {Louvet}, Pierre {Delplace}, Andrei~A. {Fedorenko}, and David
+  {Carpentier}.
+\newblock {On the origin of minimal conductivity at a band crossing}.
+\newblock {\em Physical Review B}, 92(15):155116, Oct 2015.
+
+\bibitem{shotnoise}
+J.~{Tworzyd{\l}o}, B.~{Trauzettel}, M.~{Titov}, A.~{Rycerz}, and C.~W.~J.
+  {Beenakker}.
+\newblock {Sub-Poissonian Shot Noise in Graphene}.
+\newblock {\em \prl}, 96(24):246802, Jun 2006.
+
+\bibitem{QPCarticle}
+H.~{van Houten} and C.~W.~J. {Beenakker}.
+\newblock {Quantum Point Contacts}.
+\newblock {\em arXiv e-prints}, pages cond--mat/0512609, Dec 2005.
+
 \end{thebibliography}
