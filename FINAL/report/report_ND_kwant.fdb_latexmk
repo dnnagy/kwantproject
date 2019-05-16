@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex report_ND_kwant"] 1557997354 "report_ND_kwant.aux" "report_ND_kwant.bbl" "report_ND_kwant" 1557997354
+["bibtex report_ND_kwant"] 1558001716 "report_ND_kwant.aux" "report_ND_kwant.bbl" "report_ND_kwant" 1558001716
   "/usr/local/texlive/2016/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "references.bib" 1556135193 5675 fa62bd2fcb53fc6fb5ebd5d3be5c37dc ""
-  "report_ND_kwant.aux" 1557997353 5630 52910a7919a4a0686514e7804e993805 ""
+  "report_ND_kwant.aux" 1558001716 5659 85b0de8b65f9cfcca2be9ca80770bd21 ""
   "report_ND_kwant.bcf" 0 -1 0 ""
   (generated)
   "report_ND_kwant.bbl"
-["pdflatex"] 1557997354 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.pdf" "report_ND_kwant" 1557997354
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.aux" 1557997353 5630 52910a7919a4a0686514e7804e993805 ""
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.tex" 1557997343 22564 b0e2eceeb15006818094419d54a510c7 ""
+["pdflatex"] 1558001717 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.pdf" "report_ND_kwant" 1558001717
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.aux" 1558001716 5659 85b0de8b65f9cfcca2be9ca80770bd21 ""
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.tex" 1558001706 22610 d58350f534fe432b059540ec44980a7c ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1136768653 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
@@ -155,14 +155,14 @@
   "media/square_lattice_W=30_L=50.png" 1554903438 43553 d9e80df02819ac7080f07ef8d32fe3b1 ""
   "media/tai_results_from_article.png" 1557914606 386866 346087689154ac25774eef5275b2e0a1 ""
   "media/tai_results_params1_nsamples=4.png" 1557987344 133744 a8f43fbc92bbdfe744da1d5e1c7d87f9 ""
-  "report_ND_kwant.aux" 1557997353 5630 52910a7919a4a0686514e7804e993805 ""
-  "report_ND_kwant.bbl" 1557997354 1760 7e944993dc8660a26e38c41d625608aa "bibtex report_ND_kwant"
+  "report_ND_kwant.aux" 1558001716 5659 85b0de8b65f9cfcca2be9ca80770bd21 ""
+  "report_ND_kwant.bbl" 1558001717 1760 7e944993dc8660a26e38c41d625608aa "bibtex report_ND_kwant"
   "report_ND_kwant.out" 0 -1 0 ""
-  "report_ND_kwant.tex" 1557997343 22564 b0e2eceeb15006818094419d54a510c7 ""
+  "report_ND_kwant.tex" 1558001706 22610 d58350f534fe432b059540ec44980a7c ""
   (generated)
   "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.pdf"
-  "report_ND_kwant.log"
-  "report_ND_kwant.aux"
   "report_ND_kwant.pdf"
+  "report_ND_kwant.aux"
   "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/report/report_ND_kwant.log"
   "report_ND_kwant.out"
+  "report_ND_kwant.log"
