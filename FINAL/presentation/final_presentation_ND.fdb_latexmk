@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex final_presentation_ND"] 1557998010 "final_presentation_ND.aux" "final_presentation_ND.bbl" "final_presentation_ND" 1557998010
+["bibtex final_presentation_ND"] 1558002287 "final_presentation_ND.aux" "final_presentation_ND.bbl" "final_presentation_ND" 1558002287
   "/usr/local/texlive/2016/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "final_presentation_ND.aux" 1557998010 4974 e23bfae82e5982d1221a667c7945b123 ""
+  "final_presentation_ND.aux" 1558002286 4974 e23bfae82e5982d1221a667c7945b123 ""
   "final_presentation_ND.bcf" 0 -1 0 ""
   "references.bib" 1556135193 5675 fa62bd2fcb53fc6fb5ebd5d3be5c37dc ""
   (generated)
   "final_presentation_ND.bbl"
-["pdflatex"] 1557998010 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.pdf" "final_presentation_ND" 1557998010
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.aux" 1557998010 4974 e23bfae82e5982d1221a667c7945b123 ""
-  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.tex" 1557997998 18705 dd491d566ad6e2dab5332cca0c7c0a8b ""
+["pdflatex"] 1558002287 "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.tex" "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.pdf" "final_presentation_ND" 1558002287
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.aux" 1558002286 4974 e23bfae82e5982d1221a667c7945b123 ""
+  "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.tex" 1558002274 18705 8c92d3b16d8155c08a37cec81c2814db ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -179,9 +179,9 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1490860339 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1490860398 3873397 50936b75940aae539edfe57da8c8d615 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "final_presentation_ND.aux" 1557998010 4974 e23bfae82e5982d1221a667c7945b123 ""
-  "final_presentation_ND.bbl" 1557998010 1760 7e944993dc8660a26e38c41d625608aa "bibtex final_presentation_ND"
-  "final_presentation_ND.tex" 1557997998 18705 dd491d566ad6e2dab5332cca0c7c0a8b ""
+  "final_presentation_ND.aux" 1558002286 4974 e23bfae82e5982d1221a667c7945b123 ""
+  "final_presentation_ND.bbl" 1558002287 1760 7e944993dc8660a26e38c41d625608aa "bibtex final_presentation_ND"
+  "final_presentation_ND.tex" 1558002274 18705 8c92d3b16d8155c08a37cec81c2814db ""
   "media/2deg_conductivity_W40_L20_VL6_0_VS6_0.png" 1557847374 59393 7d082328d0f035e211d08e6c6e2d5724 ""
   "media/2deg_shotnoise_W40_L20_VL6_0_VS6_0.png" 1557847397 141686 31bec3c6a92ba5a786a89157ecaef294 ""
   "media/2degconst_W8_L10.png" 1557846826 91978 fc8f9b9f1c77e62ed5d43e6a30b2c351 ""
@@ -202,8 +202,8 @@
   "media/tai_results_from_article.png" 1557914606 386866 346087689154ac25774eef5275b2e0a1 ""
   "media/tai_results_params1_nsamples=4.png" 1557987344 133744 a8f43fbc92bbdfe744da1d5e1c7d87f9 ""
   (generated)
-  "final_presentation_ND.log"
+  "final_presentation_ND.pdf"
   "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.pdf"
   "/Users/nagydaniel/Documents/ELTE/MSc/modellinglab19/FINAL/presentation/final_presentation_ND.log"
+  "final_presentation_ND.log"
   "final_presentation_ND.aux"
-  "final_presentation_ND.pdf"
