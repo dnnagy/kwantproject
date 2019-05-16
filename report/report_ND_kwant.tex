@@ -55,7 +55,8 @@
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue}
 
-\title{Numerical simulation of quantum transport phenomena}
+\title{Numerical simulation of quantum transport phenomena
+\\ using the kwant package}
 
 \author{Nagy Dániel}
 
@@ -274,39 +275,39 @@ be often classified by type of atom or the lattice to which they belong \cite{kw
 \section*{Quantum point contact}
 
 In kwant, it is easy to define a two-dimensional tight binding system using the \texttt{Builder} class.
-I created a simple quantum point contact shown in figure \ref{fig:2degconst_W5_L10}.
+I created a simple quantum point contact shown in figure \ref{fig:2degconst_W8_L10.png}.
 \begin{figure}[H]
   \begin{center}
-  \includegraphics[width=0.45\textwidth]{./media/2degconst_W5_L10.png}
-  \caption{Plot of a square lattice quantum point contact of width $W=5$ and
+  \includegraphics[width=0.45\textwidth]{./media/2degconst_W8_L10.png}
+  \caption{Plot of a square lattice quantum point contact of width $W=8$ and
   length $L=10$ defined in kwant.}
-  \label{fig:2degconst_W5_L10}
+  \label{fig:2degconst_W8_L10.png}
   \end{center}
 \end{figure}
 
 The quantum point contacts have a specific, quantized conductance in function of energy \cite{QPCarticle}.
-I calculated the transmission coefficients of the structure shown in figure \ref{fig:2degconst_W5_L10},
-and plotted against the energy. The results (shown in fig. \ref{fig:cond_2deg_W5_L10_VL6_0_VS6_0.png}.)
+I calculated the transmission coefficients of the structure shown in figure \ref{fig:2degconst_W8_L10.png},
+and plotted against the energy. The results (shown in fig. \ref{fig:2deg_conductivity_W40_L20_VL6_0_VS6_0.png}.)
 reflect the transmission quantization presented in \cite{QPCarticle}.
 \begin{figure}[H]
   \begin{center}
-  \includegraphics[width=0.45\textwidth]{./media/cond_2deg_W5_L10_VL6_0_VS6_0.png}
-  \caption{Transmission coefficients calculated using the system shown in figure \ref{fig:2degconst_W5_L10}.
+  \includegraphics[width=0.45\textwidth]{./media/2deg_conductivity_W40_L20_VL6_0_VS6_0.png}
+  \caption{Transmission coefficients calculated using the system shown in figure \ref{fig:2degconst_W8_L10.png}.
   The potential in the scattering region and in leads is $V_L=V_S=6\textrm{eV}$, while the
   hopping energy is $t=-2\textrm{eV}$.}
-  \label{fig:cond_2deg_W5_L10_VL6_0_VS6_0.png}
+  \label{fig:2deg_conductivity_W40_L20_VL6_0_VS6_0.png}
   \end{center}
 \end{figure}
 
 Using kwants built-in function \texttt{kwant.physics.two\_terminal\_shotnoise},
 I was able to easily calculate the shot-noise \cite{shotnoise} between leads. 
 I created the structure shown on figure \ref{fig:2degconst_W5_L10}, then calculated
-the two-terminal shot-noise between leads. The results are shown on figure \ref{fig:shotnoise_2deg_W5_L10_VL6_0_VS6_0}.
+the two-terminal shot-noise between leads. The results are shown on figure \ref{fig:2deg_shotnoise_W40_L20_VL6_0_VS6_0}.
 \begin{figure}[H]
   \begin{center}
-  \includegraphics[width=0.45\textwidth]{./media/shotnoise_2deg_W5_L10_VL6_0_VS6_0.png}
+  \includegraphics[width=0.45\textwidth]{./media/2deg_shotnoise_W40_L20_VL6_0_VS6_0.png}
   \caption{Shot noise in function of the electron energy.}
-  \label{fig:shotnoise_2deg_W5_L10_VL6_0_VS6_0}
+  \label{fig:2deg_shotnoise_W40_L20_VL6_0_VS6_0}
   \end{center}
 \end{figure}
 If a tight-binding system is placed in magnetic field, this can be taken into account by using Peierls' substitution:
